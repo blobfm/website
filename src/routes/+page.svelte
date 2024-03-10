@@ -22,6 +22,10 @@
 
 		playing = episode;
 		play(networks.chiado, playing.hash);
+		tracks = {
+			current: 0,
+			total: 0
+		};
 	};
 
 	const trackCallback = () => {
@@ -35,6 +39,7 @@
 		initialize();
 		player.onloadstart = trackCallback;
 		player.onfinishedtrack = trackCallback;
+		player.onunload = trackCallback;
 	});
 </script>
 
