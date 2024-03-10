@@ -85,6 +85,9 @@
 			{playing.title}
 		</p>
 
-		<p class="shrink-0">{tracks.current} / {tracks.total}</p>
+		<p class="shrink-0">
+			<span title="Currently playing blob">{tracks.current}</span> /
+			<span title="Loaded blobs for this track">{tracks.total}</span>
+		</p>
 	</section>
 {/if}
