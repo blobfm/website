@@ -56,7 +56,6 @@ const handleBlob = (hex: string, address: string) => {
 
     // Play last track
     if (!get(stopped) && !player.isPlaying()) {
-        console.log("Playing last track");
         player.onload = (path, loaded) => {
             if (path === url && loaded) {
                 player.play();
@@ -129,8 +128,6 @@ export const play = async (network: Network, address: string) => {
         const tx = await provider.getTransaction(log.transactionHash);
         const timestamp = Number(new AbiCoder().decode(["uint256"], log.data)[0]);
         const slot = (timestamp - network.genesis) / 5;
-
-        console.log(tx, timestamp, slot)
 
         if (!tx || tx.type !== 3) {
             continue;

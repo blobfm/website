@@ -20,7 +20,6 @@
 			return;
 		}
 
-		console.log('Playing', episode);
 		playing = episode;
 		play(networks.chiado, playing.hash);
 	};
