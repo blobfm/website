@@ -199,7 +199,7 @@
 		</button>
 	</div>
 
-	<div class="columns-1 md:columns-2 xl:columns-3 gap-8">
+	<div class="columns-1 md:columns-2 xl:columns-3 gap-8 [&>*]:break-inside-avoid">
 		<div class="bg-white rounded-xl mb-8 p-8">
 			<input
 				type="file"
