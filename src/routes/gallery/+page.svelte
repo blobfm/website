@@ -70,10 +70,10 @@
 			return;
 		}
 
-		const provider = new JsonRpcProvider(networks.chiado.rpc);
+		const provider = new JsonRpcProvider(network.rpc);
 		const common = Common.custom(
 			{
-				name: 'chiado',
+				name: network.name,
 				chainId: network.id,
 				networkId: network.id
 			},
