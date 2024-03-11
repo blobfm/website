@@ -47,7 +47,7 @@
 	};
 
 	const wallet = loadWallet();
-	let network = networks.chiado;
+	let network = Date.now() >= 1710181820000 ? networks.gnosis : networks.chiado;
 
 	const images = Array.from({ length: 30 }, (_, i) => ({
 		image: `https://picsum.photos/400/${randomBetween(200, 800)}`,
