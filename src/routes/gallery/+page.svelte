@@ -19,7 +19,7 @@
 
 	// Lib
 	import { resizeImage } from '$lib/image';
-	import { formatAddress, randomBetween } from '$lib/utils';
+	import { formatAddress } from '$lib/utils';
 	import { networks } from '$lib/networks';
 
 	// Icons
@@ -48,11 +48,6 @@
 
 	const wallet = loadWallet();
 	let network = Date.now() >= 1710181820000 ? networks.gnosis : networks.chiado;
-
-	const images = Array.from({ length: 30 }, (_, i) => ({
-		image: `https://picsum.photos/400/${randomBetween(200, 800)}`,
-		transaction: '0x8405293bfeda26a160d51afd244279b36e5f1718db15cd1aa6b95f73f6214a0f'
-	}));
 
 	const createBlob = (data: Uint8Array): Uint8Array => {
 		const blob = new Uint8Array(32 * 4096);
