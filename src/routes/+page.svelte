@@ -2,8 +2,9 @@
 	import { onMount } from 'svelte';
 
 	// Lib
-	import { player, initialize, play, networks, stopped } from '$lib/player';
+	import { player, initialize, play, stopped } from '$lib/player';
 	import { type Episode, epicenter } from '$lib/data';
+	import { networks } from '$lib/networks';
 
 	// Icons
 	import PlayIcon from '~icons/mdi/play-circle';
