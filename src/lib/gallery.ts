@@ -120,7 +120,7 @@ const init = async (network: Network, address: string) => {
 	const logs = await provider.getLogs({
 		address,
 		topics: ['0x920bafc9b698db43ceb2a24a000b11adbc6618546595516600022ec103554902'],
-		fromBlock: 0
+		fromBlock: network.galleryFrom ?? 0
 	});
 
 	for (const log of logs) {
