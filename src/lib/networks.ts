@@ -27,7 +27,7 @@ export const networks: Record<string, Network> = {
 		name: 'Gnosis',
 		beacon: 'https://rpc-gbc.gnosischain.com',
 		genesis: 1638993340,
-		rpc: 'https://rpc.gnosischain.com',
+		rpc: 'https://rpc.gnosis.gateway.fm',
 		faucet: 'https://faucet.gnosischain.com',
 		explorer: 'https://gnosisscan.io',
 		gallery: '0x53EB1EB37b3DDEacB3627Ea670256412Cd7dC419',
