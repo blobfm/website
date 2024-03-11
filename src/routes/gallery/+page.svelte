@@ -232,6 +232,10 @@
 				<button on:click={fundFromWallet} class="underline mt-2 text-xs m-auto block">
 					Click here to send 0.5 xDAI from brower wallet.
 				</button>
+
+				<a href={network.faucet} class="underline text-xs text-center block" target="_blank">
+					Go to the faucet
+				</a>
 			{/if}
 		</div>
 
