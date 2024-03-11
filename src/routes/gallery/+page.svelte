@@ -91,7 +91,7 @@
 			data: '0x8d7cd6da',
 			gasLimit: 50000,
 			to: Address.fromString(network.gallery),
-			chainId: 10200,
+			chainId: network.id,
 			maxFeePerBlobGas: 1e9,
 			maxPriorityFeePerGas: 2e9,
 			maxFeePerGas: 50e9,
