@@ -184,7 +184,7 @@
 	});
 </script>
 
-<section class="bg-[#f7f7f7] py-4 px-4 md:px-8 xl:px-16">
+<section class="bg-[#f7f7f7] pt-4 pb-12 px-4 md:px-8 xl:px-16">
 	<h2 class="text-2xl m-auto my-8 text-center">Gallery</h2>
 
 	<div class="columns-1 md:columns-2 xl:columns-3 gap-8">
