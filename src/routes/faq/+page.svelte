@@ -6,7 +6,7 @@
 		<p class="mt-2">
 			<a href="/" class="underline">Blob.fm </a> is a website that demonstrates fun use-cases of blobs
 			on post-Dencun chains. While the main idea is to scale Ethereum with L2s, they are in fact just
-			arbitrary data that can be stored on chain, and can thus be abused for diverse experiments.
+			arbitrary data that can be stored on chain, and can thus be used for diverse experiments.
 		</p>
 
 		<h3 class="text-xl mt-8 mb-2">Which chains support Dencun?</h3>
