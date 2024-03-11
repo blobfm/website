@@ -6,6 +6,8 @@
 
 	// Icons
 	import EthereumIcon from '~icons/mdi/ethereum';
+	import TwitterIcon from '~icons/mdi/twitter';
+	import GithubIcon from '~icons/mdi/github';
 </script>
 
 <header class="text-center">
@@ -22,8 +24,21 @@
 
 <nav>
 	<ul class="flex gap-4 justify-center italic my-4">
+		<span class="invisible hidden sm:flex mr-auto my-2 text-xl gap-2 ml-4">
+			<TwitterIcon />
+			<GithubIcon />
+		</span>
+		<span class="flex sm:hidden w-0" />
 		<NavItem href="/">Radio</NavItem>
 		<NavItem href="/gallery">Gallery</NavItem>
+		<span class="ml-auto my-2 flex text-xl gap-2 mr-4 text-gray-700">
+			<a class="hover:text-black" href="https://twitter.com/blobFM" target="_blank">
+				<TwitterIcon />
+			</a>
+			<a class="hover:text-black" href="https://github.com/blobfm" target="_blank">
+				<GithubIcon />
+			</a>
+		</span>
 	</ul>
 </nav>
 
