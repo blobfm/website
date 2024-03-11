@@ -29,8 +29,11 @@
 			<GithubIcon />
 		</span>
 		<span class="flex sm:hidden w-0" />
+
 		<NavItem href="/">Radio</NavItem>
 		<NavItem href="/gallery">Gallery</NavItem>
+		<NavItem href="/faq">FAQ</NavItem>
+
 		<span class="ml-auto my-2 flex text-xl gap-2 mr-4 text-gray-700">
 			<a class="hover:text-black" href="https://twitter.com/blobFM" target="_blank">
 				<TwitterIcon />
