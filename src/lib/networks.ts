@@ -28,6 +28,6 @@ export const networks: Record<string, Network> = {
 		rpc: 'https://rpc.gnosischain.com',
 		faucet: 'https://faucet.gnosischain.com',
 		explorer: 'https://gnosisscan.io',
-		gallery: '0x07609f0AD8898b4bf411685AEc6536CDcE0e2eC7'
+		gallery: '0x53EB1EB37b3DDEacB3627Ea670256412Cd7dC419'
 	}
 } as const;
