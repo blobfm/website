@@ -29,7 +29,7 @@
 		</p>
 		<p class="mt-2">
 			Gnosis Chain produces one block every 5 seconds, and targets one blob per block, meaning that
-			each block can now store roughly 125kb of additional data. This represents roughly 2.16 GB per
+			each block can now store roughly 125kB of additional data. This represents roughly 2.16 GB per
 			day.
 		</p>
 
@@ -79,7 +79,7 @@
 		<h3 class="text-xl mt-8 mb-2">How does on-demand audio work?</h3>
 		<p class="mt-2">
 			Audio streaming is achieved by cutting an audio file in many pieces that can fit in a blob, so
-			around 125kb. We chose the Opus coding format to achieve this, and can fit around 14 seconds
+			around 125kB. We chose the Opus coding format to achieve this, and can fit around 14 seconds
 			of audio in a blob, with a 16kHz sampling rate and 64kbps bitrate on two channels, which in
 			our opinion is a good compromise between size and audio quality.
 		</p>
