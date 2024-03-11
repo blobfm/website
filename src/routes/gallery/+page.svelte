@@ -233,7 +233,11 @@
 					Click here to send 0.5 xDAI from brower wallet.
 				</button>
 
-				<a href={network.faucet} class="underline text-xs text-center block" target="_blank">
+				<a
+					href={`${network.faucet}?address=${wallet.address}`}
+					class="underline text-xs text-center block"
+					target="_blank"
+				>
 					Go to the faucet
 				</a>
 			{/if}
