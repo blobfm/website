@@ -47,7 +47,7 @@
 	};
 
 	const wallet = loadWallet();
-	const network = networks.chiado;
+	let network = networks.chiado;
 
 	const images = Array.from({ length: 30 }, (_, i) => ({
 		image: `https://picsum.photos/400/${randomBetween(200, 800)}`,
@@ -182,10 +182,22 @@
 			gallery.init(network, network.gallery);
 		}
 	});
+
+	$: network.gallery && gallery.init(network, network.gallery);
 </script>
 
 <section class="bg-[#f7f7f7] pt-4 pb-12 px-4 md:px-8 xl:px-16">
-	<h2 class="text-2xl m-auto my-8 text-center">Gallery</h2>
+	<h2 class="text-2xl m-auto mt-8 mb-2 text-center">Gallery</h2>
+
+	<div class="text-center mb-6">
+		<button class:underline={network.id === 10200} on:click={() => (network = networks.chiado)}>
+			Chiado
+		</button>
+		-
+		<button class:underline={network.id === 100} on:click={() => (network = networks.gnosis)}>
+			Gnosis Chain
+		</button>
+	</div>
 
 	<div class="columns-1 md:columns-2 xl:columns-3 gap-8">
 		<div class="bg-white rounded-xl mb-8 p-8">

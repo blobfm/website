@@ -27,6 +27,7 @@ export const networks: Record<string, Network> = {
 		genesis: 1638993340,
 		rpc: 'https://rpc.gnosischain.com',
 		faucet: 'https://faucet.gnosischain.com',
-		explorer: 'https://gnosisscan.io'
+		explorer: 'https://gnosisscan.io',
+		gallery: '0x07609f0AD8898b4bf411685AEc6536CDcE0e2eC7'
 	}
 } as const;
