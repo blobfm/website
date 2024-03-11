@@ -1,5 +1,6 @@
 export type Network = {
 	id: number;
+	name: string;
 	beacon: string;
 	genesis: number;
 	rpc: string;
@@ -10,6 +11,7 @@ export type Network = {
 export const networks: Record<string, Network> = {
 	chiado: {
 		id: 10200,
+		name: 'Chiado',
 		beacon: 'https://rpc-gbc.chiadochain.net',
 		genesis: 1665396300,
 		rpc: 'https://rpc.chiadochain.net',
@@ -18,6 +20,7 @@ export const networks: Record<string, Network> = {
 	},
 	gnosis: {
 		id: 100,
+		name: 'Gnosis',
 		beacon: 'https://rpc-gbc.gnosischain.com',
 		genesis: 1638993340,
 		rpc: 'https://rpc.gnosischain.com',

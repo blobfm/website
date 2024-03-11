@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import type { EventHandler } from 'svelte/elements';
 	import { browser } from '$app/environment';
-	import { JsonRpcProvider, Wallet } from 'ethers';
+	import { JsonRpcProvider, Wallet, parseEther, BrowserProvider } from 'ethers';
 	import { createKZG } from 'kzg-wasm';
 	import {
 		Address,
@@ -137,6 +137,43 @@
 		reader.readAsDataURL(image);
 	};
 
+	const fundFromWallet = async () => {
+		if (!wallet) {
+			return;
+		}
+
+		const chainId = '0x' + network.id.toString(16);
+		const provider = new BrowserProvider((window as any).ethereum, {
+			name: network.name,
+			chainId: network.id
+		});
+
+		try {
+			await provider.send('wallet_switchEthereumChain', [{ chainId }]);
+		} catch ({ error = {} }: any) {
+			if (error.code === 4902) {
+				await provider.send('wallet_addEthereumChain', [
+					{
+						chainId,
+						chainName: network.name,
+						rpcUrls: [network.rpc],
+						blockExplorerUrls: [network.explorer],
+						nativeCurrency: {
+							symbol: 'xDAI',
+							decimals: 18
+						}
+					}
+				]);
+				await provider.send('wallet_switchEthereumChain', [{ chainId }]);
+			} else {
+				return;
+			}
+		}
+
+		const signer = await provider.getSigner();
+		await signer.sendTransaction({ to: wallet.address, value: parseEther('0.5') });
+	};
+
 	onMount(() => {
 		kzg = createKZG();
 		kzg.then((kzg) => initKZG(kzg, ''));
@@ -191,6 +228,10 @@
 					</a>
 					with some xDAI.
 				</p>
+
+				<button on:click={fundFromWallet} class="underline mt-2 text-xs m-auto block">
+					Click here to send 0.5 xDAI from brower wallet.
+				</button>
 			{/if}
 		</div>
 
