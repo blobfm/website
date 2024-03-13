@@ -20,7 +20,7 @@
 	// Lib
 	import { resizeImage } from '$lib/image';
 	import { formatAddress } from '$lib/utils';
-	import { networks } from '$lib/networks';
+	import { enabledNetworks, networks } from '$lib/networks';
 
 	// Icons
 	import UploadIcon from '~icons/mdi/upload-box';
@@ -84,17 +84,27 @@
 			}
 		);
 
+		// Gas
+		const oneGwei = 10n ** 9n;
+		const feeData = await provider.getFeeData();
+		const maxPriorityFeePerGas = (feeData.maxPriorityFeePerGas ?? oneGwei) + oneGwei;
+
+		// Nonce
 		const nonce = await provider.getTransactionCount(wallet.address);
+
+		// Blob
 		const blobs = [createBlob(blob)];
 		const kzgCommitments = blobsToCommitments(blobs);
+
+		// Transaction
 		const txData: BlobEIP4844TxData = {
 			data: '0x8d7cd6da',
 			gasLimit: 50000,
 			to: Address.fromString(network.gallery),
 			chainId: network.id,
-			maxFeePerBlobGas: 1e9,
-			maxPriorityFeePerGas: 2e9,
-			maxFeePerGas: 50e9,
+			maxFeePerBlobGas: 50n * oneGwei,
+			maxPriorityFeePerGas,
+			maxFeePerGas: maxPriorityFeePerGas + (feeData.maxFeePerGas ?? 49n * oneGwei) + oneGwei,
 			blobs,
 			kzgCommitments,
 			blobVersionedHashes: commitmentsToVersionedHashes(kzgCommitments),
@@ -153,10 +163,7 @@
 						chainName: network.name,
 						rpcUrls: [network.rpc],
 						blockExplorerUrls: [network.explorer],
-						nativeCurrency: {
-							symbol: 'xDAI',
-							decimals: 18
-						}
+						nativeCurrency: network.nativeCurrency
 					}
 				]);
 				await provider.send('wallet_switchEthereumChain', [{ chainId }]);
@@ -185,13 +192,16 @@
 	<h2 class="text-2xl m-auto mt-8 mb-2 text-center">Gallery</h2>
 
 	<div class="text-center mb-6">
-		<button class:underline={network.id === 10200} on:click={() => (network = networks.chiado)}>
-			Chiado
-		</button>
-		-
-		<button class:underline={network.id === 100} on:click={() => (network = networks.gnosis)}>
-			Gnosis Chain
-		</button>
+		{#each enabledNetworks as key}
+			{@const enabledNetwork = networks[key]}
+			<button
+				class:underline={network.id === enabledNetwork.id}
+				on:click={() => (network = enabledNetwork)}
+			>
+				{enabledNetwork.name}
+			</button>
+			<span class="last:hidden"> - </span>
+		{/each}
 	</div>
 
 	<div class="columns-1 md:columns-2 xl:columns-3 gap-8 [&>*]:break-inside-avoid">
@@ -240,13 +250,15 @@
 					Click here to send 0.5 xDAI from brower wallet.
 				</button>
 
-				<a
-					href={`${network.faucet}?address=${wallet.address}`}
-					class="underline text-xs text-center block"
-					target="_blank"
-				>
-					Go to the faucet
-				</a>
+				{#if network.faucet}
+					<a
+						href={`${network.faucet}?address=${wallet.address}`}
+						class="underline text-xs text-center block"
+						target="_blank"
+					>
+						Go to the faucet
+					</a>
+				{/if}
 			{/if}
 		</div>
 

@@ -96,18 +96,26 @@ const init = async (network: Network, address: string) => {
 		}
 
 		const tx = await provider.getTransaction(log.transactionHash);
-		const timestamp = Number(new AbiCoder().decode(['uint256'], log.data)[0]);
-		const slot = (timestamp - network.genesis) / 5;
-
 		if (!tx || tx.type !== 3) {
 			return;
 		}
 
-		for (const hash of tx.blobVersionedHashes ?? []) {
-			await fetchBlob(network, slot, hash, address, {
-				transaction: log.transactionHash,
-				from: tx.from
-			});
+		const metadata = {
+			transaction: log.transactionHash,
+			from: tx.from
+		};
+
+		if (network.blobscan) {
+			const blob = await fetch(network.blobscan + '/blobs/' + tx.blobVersionedHashes);
+			const { data } = await blob.json();
+			handleBlob(data, address, metadata);
+		} else if (network.beacon) {
+			const timestamp = Number(new AbiCoder().decode(['uint256'], log.data)[0]);
+			const slot = (timestamp - network.genesis) / network.slotsPerSecond;
+
+			for (const hash of tx.blobVersionedHashes ?? []) {
+				await fetchBlob(network, slot, hash, address, metadata);
+			}
 		}
 	};
 
